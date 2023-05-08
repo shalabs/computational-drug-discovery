@@ -38,7 +38,7 @@ from chembl_webresource_client.new_client import new_client
 target = new_client.target
 target_query = target.search('coronavirus')
 targets = pd.DataFrame.from_dict(target_query)
-targets
+
 
 """### **Select and retrieve bioactivity data for *SARS coronavirus 2 Replicase polyprotein 1ab* (8th entry)**
 
@@ -46,7 +46,6 @@ We will assign the fifth entry (which corresponds to the target protein, *corona
 """
 
 selected_target = targets.target_chembl_id[7]
-selected_target
 
 """Here, we will retrieve only bioactivity data for *coronavirus 3C-like proteinase* (CHEMBL3927) that are reported as IC$_{50}$ values in nM (nanomolar) unit.???"""
 
@@ -55,7 +54,6 @@ res = activity.filter(target_chembl_id=selected_target).filter(standard_type="IC
 
 df = pd.DataFrame.from_dict(res)
 
-df.head(3)
 
 df.standard_type.unique()
 
@@ -77,28 +75,18 @@ drive.mount('/content/gdrive/', force_remount=True)
 
 ! cp bioactivity_data.csv "/content/gdrive/My Drive/Colab Notebooks/data"
 
-! ls -l "/content/gdrive/My Drive/Colab Notebooks/data"
 
-"""Let's see the CSV files that we have so far."""
-
-! ls
-
-"""Taking a glimpse of the **bioactivity_data.csv** file that we've just created."""
-
-! head bioactivity_data.csv
 
 """## **Handling missing data**
 If any compounds has missing value for the **standard_value** column then drop it
 """
 
 df2 = df[df.standard_value.notna()].reset_index(drop=True)
-df2
 
 """
 
-Theres one entry with a null standard_value, so it's dropped"""
 
-df.info()
+
 
 """## **Data pre-processing of the bioactivity data**
 
@@ -117,22 +105,22 @@ for i in df2.standard_value:
 
 selection = ['molecule_chembl_id', 'canonical_smiles', 'standard_value']
 df3 = df2[selection]
-df3
+
 
 pd.concat([df3,pd.Series(bioactivity_class)], axis=1)
 
-df3.info()
+
 
 """Saves dataframe to CSV file"""
 
 df3.to_csv('bioactivity_preprocessed_data.csv', index=False)
 
-! ls -l
 
-"""Let's copy to the Google Drive"""
+
+"""copy to the Google Drive"""
 
 ! cp bioactivity_preprocessed_data.csv "/content/gdrive/My Drive/Colab Notebooks/data"
 
-! ls "/content/gdrive/My Drive/Colab Notebooks/data"
+
 
 """---"""
