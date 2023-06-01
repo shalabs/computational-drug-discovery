@@ -12,5 +12,4 @@ This repo contains a collection of notebooks of exploratory analysis and a machi
 
 [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/1f32gj5IYIyFipoINiC8P3DvKat-WWLUK) (replace "coronavirus" with any other disease to explore target proteins related to the disease)
 
-![image](https://github.com/shalabs/computational-drug-discovery/assets/80707214/735de610-a457-40d1-b9d9-dfe909c3773e)
-
+![image](https://github.com/shalabs/computational-drug-discovery/assets/80707214/6d812754-db09-407a-8679-7af467c5f00b)
